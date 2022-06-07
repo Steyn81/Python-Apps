@@ -1,5 +1,5 @@
 import random
-from HangmanWords import words
+from Hangman.HangmanWords import words
 import string
 
 
