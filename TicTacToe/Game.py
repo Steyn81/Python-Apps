@@ -115,7 +115,7 @@ if __name__ == '__main__':
     x_wins = 0
     o_wins = 0
     ties = 0
-    for _ in range(10000):
+    for _ in range(100):
         x_player = RandomComputerPlayer('X')
         o_player = GeniusComputerPlayer('O')
         t = Game()
@@ -129,4 +129,4 @@ if __name__ == '__main__':
             ties += 1
 
     print(
-        f'After 10000 iteration, we see {x_wins} X wins, {o_wins} O wins, and {ties} ties')
+        f'After 100 iteration, we see {x_wins} X wins, {o_wins} O wins, and {ties} ties')
