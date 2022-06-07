@@ -1,5 +1,5 @@
 import time
-from Player import HumanPlayer, RandomComputerPlayer
+from Player import HumanPlayer, RandomComputerPlayer, GeniusComputerPlayer
 
 
 class Game:
@@ -27,7 +27,7 @@ class Game:
     def empty_squares(self):
         return ' ' in self.board
 
-    def num_empty_square(self):
+    def num_empty_squares(self):
         return self.board.count(' ')
 
     def make_move(self, square, letter):
@@ -104,14 +104,29 @@ def play(game, x_player, o_player, print_game=True):
             letter = 'O' if letter == 'X' else 'X'
 
         # tiny wait pause
-        time.sleep(0.8)
+        if print_game:
+            time.sleep(0.8)
 
     if print_game:
         print('It\'s a tie!')
 
 
 if __name__ == '__main__':
-    x_player = HumanPlayer('X')
-    o_player = RandomComputerPlayer('O')
-    t = Game()
-    play(t, x_player, o_player, print_game=True)
+    x_wins = 0
+    o_wins = 0
+    ties = 0
+    for _ in range(10000):
+        x_player = RandomComputerPlayer('X')
+        o_player = GeniusComputerPlayer('O')
+        t = Game()
+        result = play(t, x_player, o_player, print_game=False)
+
+        if(result == 'X'):
+            x_wins += 1
+        if result == 'O':
+            o_wins += 1
+        else:
+            ties += 1
+
+    print(
+        f'After 10000 iteration, we see {x_wins} X wins, {o_wins} O wins, and {ties} ties')
